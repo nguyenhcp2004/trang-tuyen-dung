@@ -1,0 +1,54 @@
+.layout-admin {
+  &__header {
+    height: 70px;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+    position: fixed !important;
+    top: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__logo {
+    width: 200px;
+    border-right: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    height: 100%;
+
+    &--fold {
+      width: 80px;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    padding: 0 20px;
+  }
+
+  &__sider {
+    position: fixed!important;
+    top: 70px;
+    left: 0;
+    height: calc(100vh - 70px);
+    border-right: 1px solid #ddd;
+  }
+
+  &__content {
+    padding: 25px;
+    margin-top: 70px;
+    margin-left: 200px;
+    transition: all 0.2s;
+
+    &--full {
+      margin-left: 80px;
+    }
+  }
+}
