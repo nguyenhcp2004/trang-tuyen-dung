@@ -7,7 +7,7 @@ import {
 
 } from '@ant-design/icons';
 import { Layout, Button, theme } from 'antd';
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { adminStatus } from "../../actions/admin";
 import "./LayoutAdmin.scss";
@@ -34,13 +34,13 @@ const LayoutAdmin = () => {
                 
                 >
                     <div className='layout-admin__header'>
-                        <div
+                        <Link hrefLang='/admin'
                             className={
                                 "layout-admin__logo " + (collapsed ? "layout-admin__logo--fold" : "")
                             }
                         >
-                            {collapsed ? (<><span>IT</span></>) : (<><span>IT ADMIN</span></>)}
-                        </div>
+                            {collapsed ? (<><strong>IT</strong></>) : (<><strong>IT Admin</strong></>)}
+                        </Link>
                         <div className="layout-admin__nav">
                             <div className="layout-admin__nav-left">
                                 <Button

@@ -72,7 +72,8 @@ const Home = () => {
   }
 
   const handleChange = (tag) => {
-    setInputTag(tag.value);
+    dispatch(inputSearch("", tag.value));
+    navigate("/search");
   };
 
   //Danh sách công ty
@@ -87,73 +88,87 @@ const Home = () => {
 
   return (
     <>
-      <h1>1000+ IT Jobs For Developers</h1>
+      <div className="search-form">
+        <h1>1000+ IT Jobs For Developers</h1>
 
-      <Form
-        onFinish={handleFinish}
-        layout="inline"
-        form={form}
-        initialValues={{
-          tag: ""
-        }}
-      >
-        <Form.Item name="city">
-          <Select allowClear style={{ width: 200 }} options={dataCity} placeholder="Chọn thành phố" />
-        </Form.Item>
-        <Form.Item name="tag" rules={rules}>
-          <Input style={{ width: 600 }} placeholder="Nhập từ khóa" />
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Tìm kiếm
-          </Button>
-        </Form.Item>
-      </Form>
+        <Form
+          onFinish={handleFinish}
+          layout="vertical"
+          form={form}
+          initialValues={{
+            tag: ""
+          }}
+        >
+          <Row gutter={8}>
+            <Col span={2} >
+            </Col>
+            <Col span={4} >
+              <Form.Item name="city">
+                <Select allowClear options={dataCity} placeholder="Chọn thành phố" />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item name="tag" rules={rules}>
+                <Input placeholder="Nhập từ khóa" />
+              </Form.Item>
+            </Col>
+
+            <Col span={4}>
+              <Form.Item>
+                <Button type="primary" htmlType="submit">
+                  Tìm kiếm
+                </Button>
+              </Form.Item>
+            </Col>
+            <Col span={2}>
+            </Col>
+          </Row>
+        </Form>
+
+        {dataTag.length > 0 && (
+          <>
+            {dataTag.map(item => (
+              <CheckableTag
+                key={item.key}
+                checked={selectedTags.includes(item)}
+                onChange={(checked) => handleChange(item)}
+                color="#2db7f5"
+              >
+                {item.value}
+              </CheckableTag>
+            ))}
+          </>
+        )}
+      </div>
+
       <br />
-
-      {dataTag.length > 0 && (
-        <>
-          {dataTag.map(item => (
-            <CheckableTag
-              key={item.key}
-              checked={selectedTags.includes(item)}
-              onChange={(checked) => handleChange(item)}
-              color="#2db7f5"
-            >
-              {item.value}
-            </CheckableTag>
-          ))}
-        </>
-      )}
-
-      <br/>
-      <br/>
+      <br />
 
       <h2>Danh sách 1 số công ty</h2>
 
       {dataCompany.length > 0 && (
         <>
-           <Row gutter={[20, 10]} className="mb-20 company">
-          {dataCompany.map(item => ( 
-             <Col xl={8} lg={8} md={12} sm={24} xs={24} key={item.id}>
-               <div className="company__item">
-                <span>Công ty: <strong>{item.companyName}</strong></span>
-                <br/>
-                <span>Số nhân sự: <strong>{item.quantityPeople}</strong></span>
-                <br/>
-                <span>Địa chỉ: <strong>{item.address}</strong></span>
-                <br/>
-               </div>
-             </Col>
-          ))}
-           </Row>       
+          <Row gutter={[20, 10]} className="mb-20 company">
+            {dataCompany.map(item => (
+              <Col xl={8} lg={8} md={12} sm={24} xs={24} key={item.id}>
+                <div className="company__item">
+                  <span>Công ty: <strong>{item.companyName}</strong></span>
+                  <br />
+                  <span>Số nhân sự: <strong>{item.quantityPeople}</strong></span>
+                  <br />
+                  <span>Địa chỉ: <strong>{item.address}</strong></span>
+                  <br />
+                </div>
+              </Col>
+            ))}
+          </Row>
         </>
       )}
 
-      <br/>
+      <br />
       <Button>Xem thêm</Button>
-      <br/>
-      <div className="content" style={{height: 250}}></div>
+      <br />
+      <div className="content" style={{ height: 250 }}></div>
     </>
   )
 }

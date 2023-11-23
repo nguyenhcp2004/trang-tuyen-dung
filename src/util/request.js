@@ -1,4 +1,4 @@
-const SERVER = "https://db-trang-tuyen-dung.vercel.app/";
+const SERVER = "http://localhost:3002/";
 
 export const get = async (path) => {
     const response = await fetch(SERVER + path);

@@ -18,14 +18,14 @@ const LayoutDefault = () => {
     return (
         <>
             {admin ? (<>
-               <LayoutAdmin/>
+                <LayoutAdmin />
             </>) : (<>
                 <header>
                     <div className="layout">
                         <div className="layout__header">
-                            <div className="layout__logo " >
+                            <Link to="/" className="layout__logo " >
                                 <strong>IT Jobs</strong>
-                            </div>
+                            </Link>
 
                             {token ? (<>
                                 <div className="layout__nav">
@@ -60,16 +60,12 @@ const LayoutDefault = () => {
                     </div>
                 </header>
 
-                <main>
-                    <div className="container">
-                        <Outlet />
-                    </div>
+                <main className="container">
+                    <Outlet />
                 </main>
 
                 <footer className="footer">
-                    <div>
-                        <p>Copyright 2023 by 28tech</p>
-                    </div>
+                    <p>Copyright 2023 by 28tech</p>
                 </footer>
             </>)}
 

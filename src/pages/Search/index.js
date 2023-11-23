@@ -34,7 +34,9 @@ const Search = () => {
                 <>
                     <br />
                     <strong>Kết quả tìm kiếm: </strong>
-                    <Tag>{inputSearch.city}</Tag>
+                    {inputSearch.city && (
+                        <Tag>{inputSearch.city}</Tag>
+                    )}
                     <Tag>{inputSearch.tag}</Tag>
                     <br />
                     <br />
@@ -45,7 +47,7 @@ const Search = () => {
                                 {dataJob.map(item => (
                                     <Col xl={8} lg={8} md={12} sm={24} xs={24} key={item.id}>
                                         <Card title={<Link to={"/job/" + item.id}>{item.name}</Link>}>
-                                        <div className="company__info" style={{ letterSpacing: 1.5 }}>
+                                            <div className="company__info" style={{ letterSpacing: 1.5 }}>
                                                 <span>Ngôn ngữ:
                                                     {item.tags.map((tag, index) => (
                                                         <Tag key={index} color="cyan" className="tag">{tag}</Tag>

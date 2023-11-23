@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { getJob } from "../../services/jobServices";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { Button, Tag, Form, Row, Select, Input, Col, notification } from "antd";
+import { Button, Tag, Form, Row, Select, Input, Col, notification, Card } from "antd";
 import "./Job.scss";
 import { getCompany } from "../../services/companyServices ";
 import { getListCity } from "../../services/cityServices";
@@ -45,9 +45,14 @@ const Job = () => {
     }
 
     const handleFinish = async (values) => {
+        var today = new Date();
+        var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date+' '+time;
+
         let object = {
             ...values,
-            createAt: dataJob.createAt,
+            createAt: dateTime,
             statusRead: false,
             idCompany: dataCompany.id,
             idJob: dataJob.id
@@ -104,6 +109,9 @@ const Job = () => {
                 </>
             )}
 
+            <br/>
+            <br/>
+            <Card title="Ứng tuyển ngay">
             <Form
                 onFinish={handleFinish}
                 layout="vertical"
@@ -147,6 +155,7 @@ const Job = () => {
                     </Button>
                 </Form.Item>
             </Form>
+            </Card>
         </>
     )
 }
